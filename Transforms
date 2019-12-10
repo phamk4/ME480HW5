@@ -1,0 +1,31 @@
+from solid import *
+from solid.utils import *
+import viewscad
+
+r = viewscad.Renderer(openscad_exec='C:\openscad.exe')
+
+# a 
+
+angles = [20,10,30]
+x = rotate(angles)(cube(3,True))
+r.render(x)
+
+# b
+angles = [20,10,30]
+x = rotate(angles)(cube(3,True))
+y = translate([5,5,0])(x)
+
+r.render(y)
+
+# c
+
+b = 0.5
+Sx = ([1,b],[0,1])
+Sy = ([1,0],[b, 1]) 
+Sz = ([1,0,0],[0,1,0],[b,b,1])
+
+S1 = multmatrix(Sx)(cube(1))
+S2 = multmatrix(Sy)(S1)
+S3 = multmatrix(Sz)(S2)
+
+r.render(S3)
