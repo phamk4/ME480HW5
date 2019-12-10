@@ -1,0 +1,8 @@
+from solid import *
+from solid.utils import *
+import viewscad
+
+r = viewscad.Renderer(openscad_exec='C:\openscad.exe')
+c = cylinder(d=10, h=5) - cylinder(d=5, h=5)
+
+r.render(c)
